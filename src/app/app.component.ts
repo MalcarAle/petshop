@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 
+//Aqui fica fixado para todas as rotas
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  template: '<router-outlet></router-outlet>',
 })
-export class AppComponent {
-  title = 'petshop';
-}
+export class AppComponent {}

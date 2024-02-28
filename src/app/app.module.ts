@@ -8,11 +8,13 @@ import { LoginPageComponent } from './pages/account/login-page/login-page.compon
 import { ResetPasswordPageComponent } from './pages/account/reset-password-page/reset-password-page.component';
 import { SingUpPageComponent } from './pages/account/sing-up-page/sing-up-page.component';
 import { PetsPageComponent } from './pages/account/pets-page/pets-page.component';
-import { ProdcutsPageComponent } from './pages/account/store/prodcuts-page/prodcuts-page.component';
-import { CartPageComponent } from './pages/account/store/cart-page/cart-page.component';
+import { ProdcutsPageComponent } from './pages/store/prodcuts-page/prodcuts-page.component';
+import { CartPageComponent } from './pages/store/cart-page/cart-page.component';
+import { FramePageComponent } from './pages/master/frame.page';
 
 @NgModule({
   declarations: [
+    FramePageComponent,
     AppComponent,
     NavbarComponent,
     LoginPageComponent,
