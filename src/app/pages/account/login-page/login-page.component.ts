@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginPageComponent implements OnInit {
   public form!: FormGroup;
+  public busy = false;
 
   constructor(
     //criando uma dependencia, isso se chama Injeção de dependencia
@@ -39,12 +40,15 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
     const token = localStorage.getItem('petshop.token');
     if (token) {
+      this.busy = true;
       this.service.refreshToken().subscribe(
         (data: any) => {
           localStorage.setItem('petshop.token', data.token);
+          this.busy = false;
         },
         (err) => {
           localStorage.clear();
+          this.busy = false;
         }
       );
     }
@@ -53,12 +57,15 @@ export class LoginPageComponent implements OnInit {
   //aqui será feita a autenticação de fato
   //estou pegando o token e armazenando no localStorage
   submit() {
+    this.busy = true;
     this.service.authenticate(this.form.value).subscribe(
       (data: any) => {
         localStorage.setItem('petshop.token', data.token);
+        this.busy = false;
       },
       (err) => {
         console.log(err);
+        this.busy = false;
       }
     );
   }
