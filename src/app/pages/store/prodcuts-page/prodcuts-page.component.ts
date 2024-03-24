@@ -8,11 +8,11 @@ import { Product } from '../../../models/product.model';
   templateUrl: './prodcuts-page.component.html',
 })
 export class ProdcutsPageComponent implements OnInit {
-  public products$!: Observable<Product[]>;
+  public products$: Observable<Product[]> = null;
 
-  constructor(private data: DataService) {}
+  constructor(private service: DataService) {}
 
   ngOnInit() {
-    this.products$ = this.data.getProducts();
+    this.products$ = this.service.getProducts();
   }
 }

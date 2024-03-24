@@ -52,14 +52,15 @@
     </form>
 
     <p class="uk-text-center" *ngIf="!busy">
-      <a
-        [routerLink]="['/signup']"
-        class="uk-button uk-width-1-1 uk-button-large uk-button-primary uk-margin-small-bottom"
-      >
+      <a [routerLink]="['/signup']" class="uk-button uk-width-1-1 uk-button-large uk-button-primary uk-margin-small-bottom">
         Quero me cadastrar
       </a>
       <br />
-      <a href="/reset-password" class="uk-button uk-button-link" *ngIf="!busy">
+      <a
+        [routerLink]="['/reset-password']"
+        class="uk-button uk-button-link"
+        *ngIf="!busy"
+      >
         Esqueci minha senha
       </a>
     </p>

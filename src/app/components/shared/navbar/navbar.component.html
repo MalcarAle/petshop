@@ -17,7 +17,6 @@
               >Meus Pets</a
             >
           </li>
-          <li><a>Consultas</a></li>
         </ul>
       </div>
       <div class="uk-navbar-right">
@@ -28,19 +27,19 @@
                 class="uk-icon uk-margin-small-right"
                 uk-icon="icon: cart"
               ></span>
-              <span class="uk-badge">0</span>
             </a>
           </li>
           <li>
-            <a>
+            <a [routerLink]="['/account']">
               <span
                 class="uk-icon uk-margin-small-right"
                 uk-icon="icon: user"
               ></span>
+              {{ user?.name }}
             </a>
           </li>
           <li>
-            <a [routerLink]="['/login']" routerLink="active-link">
+            <a (click)="logout()">
               <span
                 class="uk-icon uk-margin-small-right"
                 uk-icon="icon: sign-out"

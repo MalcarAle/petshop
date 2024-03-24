@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidator } from '../../../validators/custom.validator';
+import { Security } from '../../../utils/security.util';
+import { Router } from '@angular/router';
+import { User } from '../../../models/user.model';
 
 @Component({
   selector: 'app-login-page',
@@ -14,6 +17,7 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     //criando uma dependencia, isso se chama Injeção de dependencia
+    private router: Router,
     private service: DataService,
     private fb: FormBuilder
   ) {
@@ -40,13 +44,13 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    const token = localStorage.getItem('petshop.token');
+    const token = Security.getToken();
     if (token) {
       this.busy = true;
       this.service.refreshToken().subscribe(
         (data: any) => {
-          localStorage.setItem('petshop.token', data.token);
           this.busy = false;
+          this.setUser(data.customer, data.token);
         },
         (err) => {
           localStorage.clear();
@@ -62,13 +66,18 @@ export class LoginPageComponent implements OnInit {
     this.busy = true;
     this.service.authenticate(this.form.value).subscribe(
       (data: any) => {
-        localStorage.setItem('petshop.token', data.token);
         this.busy = false;
+        this.setUser(data.customer, data.token);
       },
       (err) => {
         console.log(err);
         this.busy = false;
       }
     );
+  }
+
+  setUser(user: User, token: string) {
+    Security.set(user, token);
+    this.router.navigate(['/']);
   }
 }
